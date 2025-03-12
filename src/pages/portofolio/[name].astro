@@ -1,0 +1,25 @@
+---
+interface MyPortfolio {
+  id: number;
+  myportofolio_name: string;
+  myportofolio_image: string;
+  myportofolio_description: string;
+  // Tambahkan properti lain sesuai kebutuhan
+}
+
+export async function getStaticPaths() {
+  const response = await fetch("https://trial-backend-dama.vercel.app/myportofolios");
+  const myportofolios: MyPortfolio[] = await response.json();
+
+  return myportofolios.map((myportofolio) => ({
+    params: { name: myportofolio.myportofolio_name.replace(/\s+/g, '-') },
+    props: { myportofolio },
+  }));
+}
+
+const { myportofolio } = Astro.props as { myportofolio: MyPortfolio };
+---
+
+<h1>{myportofolio.myportofolio_name}</h1>
+<img src={myportofolio.myportofolio_image} alt={myportofolio.myportofolio_name} />
+<p>{myportofolio.myportofolio_description}</p>

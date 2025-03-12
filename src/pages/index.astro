@@ -1,11 +1,28 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Taglines from '../components/taglines.jsx';
+import Toservices from '../components/toservices';
+import Clientlogos from '../components/clientlogos';
+import Testimonials from '../components/testimonials';
+import Toinstagrams from '../components/toinstagrams';
+import MyportofolioHome from '../components/myportofoliohome';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="en">
+    <Layout>
+      <body>
+        <!-- <h1>Taglines Section</h1> -->
+        <Taglines client:load />
+        <!-- <h1>Services Section</h1> -->
+        <Toservices client:load />
+        <!-- <h1>Logo Section</h1> -->
+        <Clientlogos client:load />
+        <!-- <h1>Portofolio Section</h1> -->
+        <MyportofolioHome client:load />
+        <!-- <h1>Testimonials Section</h1> -->
+        <Testimonials client:load />
+        <!-- <h1>Instagrams Section</h1> -->
+        <Toinstagrams client:load />
+      </body>
+  </Layout>
+</html>

@@ -1,22 +1,225 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset CSS */
+        @font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('/fonts/AvenirNextLTPro-Regular.woff2') format('woff2'),
+         url('/fonts/AvenirNextLTPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('/fonts/AvenirNextLTPro-Bold.woff2') format('woff2'),
+         url('/fonts/AvenirNextLTPro-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('/fonts/AvenirNextLTPro-It.woff2') format('woff2'),
+         url('/fonts/AvenirNextLTPro-It.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+        :root {
+            --font-1: 'EB Garamond', sans-serif;
+            --font-2: 'Avenir Next LT Pro', sans-serif;;
+            --color-1: #000;
+            --color-2: #2b2b2b;
+            --color-3: #6d625d;
+            --color-4: #e7e4de;
+            --color-5: #f6f5f3;
+            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-2);
+            font-weight: normal;
+            font-style: normal;
+            line-height: 1.6;
+            color: var(--color-5);
+            background-color: var(--color-4);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--color-3);
+            font-family: var(--font-1);
+            color: var(--color-5);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-4);
+        }
+
+        .logo img {
+            max-height: 50px; /* Sesuaikan tinggi logo */
+        }
+
+        /* Gaya Navigasi Kiri dan Kanan */
+        .nav-left ul {
+            justify-content: flex-start;
+        }
+
+        .nav-right ul {
+            justify-content: flex-end;
+        }
+
+        /* Main Content Styles */
+        main {
+            width: 100%; /* Make it span the full screen width */
+            max-width: 100vw; /* Prevent horizontal overflow */
+            box-sizing: border-box; /* Ensure padding doesn't add extra width */
+        }
+        /* Footer Styles */
+        footer {
+            background-color: var(--color-3);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            font-family: var(--font-1);
+        }
+        footer nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        footer nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        footer nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer nav ul li a:hover {
+            color: var(--color-3);
+        }
+        .cv-dama {
+            background-color: var(--color-1);
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1rem; /* Ubah ukuran font jika perlu */
+    color: var(--color-5); /* Sesuaikan dengan warna font EB Garamond */
+    font-family: var(--font-1); /* gunakan jenis huruf yang sama dengan header dan footer*/
+}
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            footer nav ul {
+                flex-direction: column;
+            }
+
+            footer nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <nav class="nav-left">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/services">Service</a></li>
+                </ul>
+            </nav>
+            <div class="logo">
+                <img src="/logob.png" alt="Your Logo">
+            </div>
+            <nav class="nav-right">
+                <ul>
+                    <li><a href="/portofolio">Our Works</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <slot />
+    </main>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="/faq">FAQ</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/follow">Follow Us</a></li>
+            </ul>
+        </nav>
+    </footer>
+    <div class="cv-dama">CV DAMA</div>
+</body>
+</html>
