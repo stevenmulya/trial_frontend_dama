@@ -169,7 +169,7 @@ const MyServicesAdmin = () => {
         <input type="text" placeholder="Description" value={newService.myservice_description} onChange={(e) => setNewService({ ...newService, myservice_description: e.target.value })} />
         <select value={newService.myservice_type} onChange={(e) => setNewService({ ...newService, myservice_type: e.target.value })}>
           <option value="individual">Individual</option>
-          <option value="group">Group</option>
+          <option value="special">Special</option>
         </select>
         <input type="file" accept="image/*" onChange={handleImageChange} />
         {imagePreview && <img src={imagePreview} alt="Preview" style={{ maxWidth: "100px" }} />}

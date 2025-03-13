@@ -7,7 +7,11 @@ export async function getStaticPaths() {
         return services
             .filter((service: any) => service.myservice_type === "special")
             .map((service: any) => ({
-                params: { id: service.id.toString() },
+                params: {
+                    name: service.myservice_name
+                        ? service.myservice_name.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+                        : "unknown",
+                },
                 props: { service },
             }));
     } catch (error) {
@@ -18,7 +22,7 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props;
 
-const specialServices = await fetch("https://trial-backend-dama.vercel.app/myservices").then(res => res.json()).then(data => data.filter((service: any) => service.myservice_type === "special"))
+const specialServices = await fetch("https://trial-backend-dama.vercel.app/myservices").then(res => res.json()).then(data => data.filter((service: any) => service.myservice_type === "special"));
 
 ---
 
@@ -47,35 +51,30 @@ const specialServices = await fetch("https://trial-backend-dama.vercel.app/myser
             margin-bottom: 20px;
             color: #222;
         }
-        img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-        }
         .service-item {
             border: 1px solid #ddd;
             padding: 15px;
             margin-bottom: 10px;
         }
+        .service-item a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .service-item a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Special Services</h1>
-    {specialServices.map((service: any) => (
-        <div class="service-item">
-            <h2>{service.myservice_title}</h2>
-            <img src={service.myservice_image} alt={service.myservice_title} />
-            <p>{service.myservice_description}</p>
-        </div>
-    ))}
-</div>
+    <div class="container">
+        <h1>Special Services</h1>
+        {specialServices.map((service: any) => (
+            <div class="service-item">
+                <a href={`/services/special/${service.myservice_name ? service.myservice_name.toLowerCase().replace(/[^a-z0-9]+/g, "-") : "unknown"}`}>
+                    <h2>{service.myservice_name}</h2>
+                </a>
+            </div>
+        ))}
+    </div>
 </body>
 </html>
