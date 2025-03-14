@@ -49,10 +49,10 @@ const Toinstagrams = () => {
             padding: "40px 0", // Meningkatkan padding
             gap: "30px", // Meningkatkan gap
             maxWidth: "1200px", // Menambahkan maxWidth
-            "::-webkit-scrollbar": {
+            "::WebkitScrollbar": {
                 display: "none",
             },
-            "scrollbar-width": "none",
+            "scrollbarWidth": "none",
         },
         toinstagramItem: {
             margin: "0", // Menghapus margin
