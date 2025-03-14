@@ -25,13 +25,9 @@ const MyportofolioHome = () => {
 
     const styles = {
         section: {
-            height: "80vh",
-            padding: "10vh 20px",
+            padding: "50px 20px",
             textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            background: "#6d625d",
         },
         message: {
             color: "red",
@@ -42,19 +38,15 @@ const MyportofolioHome = () => {
         },
         title: {
             fontSize: "28px",
-            marginBottom: "10px", // Mengurangi margin bawah
-        },
-        subtitle: {
-            marginTop: "5px", // Mengurangi margin atas
+            marginBottom: "30px",
+            color: "#e7e4de",
         },
         container: {
             display: "flex",
             justifyContent: "center",
             flexWrap: "wrap",
-            gap: "40px",
+            gap: "20px",
             marginBottom: "30px",
-            maxWidth: "1200px",
-            width: "100%",
         },
         portofolioItem: {
             width: "300px",
@@ -64,22 +56,16 @@ const MyportofolioHome = () => {
             boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             cursor: "pointer",
             transition: "transform 0.3s ease",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            "&:hover": {
-                transform: "scale(1.05)",
-            },
         },
         image: {
             width: "100%",
-            height: "300px",
+            height: "200px",
             objectFit: "cover",
             transition: "transform 0.3s ease-in-out",
         },
         portofolioTitle: {
-            padding: "10px",
-            fontSize: "16px",
+            padding: "15px",
+            fontSize: "20px",
             color: "#e7e4de",
             textAlign: "center",
         },
@@ -88,15 +74,14 @@ const MyportofolioHome = () => {
             color: "#6d625d",
             padding: "10px 20px",
             border: "none",
+            borderRadius: "5px",
             cursor: "pointer",
             fontSize: "16px",
-            marginTop: "20px",
-            padding: "15px 30px", // Menambahkan padding
         },
     };
 
     const handlePortfolioClick = (name) => {
-        const sanitizedName = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        let sanitizedName = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
         window.location.href = `/portofolio/${sanitizedName}`;
     };
 
@@ -105,8 +90,7 @@ const MyportofolioHome = () => {
             {message && <p style={styles.message}>{message}</p>}
             {loading && <p style={styles.loading}>Loading...</p>}
 
-            <h2 style={styles.title}>View Our Portfolio</h2>
-            <p style={styles.subtitle}>Take a glimpse at our past & current works.</p>
+            <h2 style={styles.title}>View our portfolio</h2>
 
             <div style={styles.container}>
                 {myportofolios.slice(-3).map((myportofolio) => (
