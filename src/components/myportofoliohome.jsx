@@ -25,9 +25,13 @@ const MyportofolioHome = () => {
 
     const styles = {
         section: {
-            padding: "50px 20px",
+            height: "80vh",
+            padding: "10vh 20px",
             textAlign: "center",
-            background: "#6d625d",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
         },
         message: {
             color: "red",
@@ -38,50 +42,60 @@ const MyportofolioHome = () => {
         },
         title: {
             fontSize: "28px",
-            marginBottom: "30px",
-            color: "#e7e4de",
+            marginBottom: "10px",
+        },
+        subtitle: {
+            marginTop: "5px",
         },
         container: {
             display: "flex",
             justifyContent: "center",
             flexWrap: "wrap",
-            gap: "20px",
-            marginBottom: "30px",
+            gap: "40px",
+            marginBottom: "10px",
+            maxWidth: "1200px",
+            width: "100%",
         },
         portofolioItem: {
             width: "300px",
             border: "1px solid #ddd",
             borderRadius: "8px",
             overflow: "hidden",
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            
             cursor: "pointer",
             transition: "transform 0.3s ease",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            "&:hover": {
+                transform: "scale(1.05)",
+            },
         },
         image: {
             width: "100%",
-            height: "200px",
+            height: "250px", // Mengurangi tinggi gambar
             objectFit: "cover",
             transition: "transform 0.3s ease-in-out",
         },
         portofolioTitle: {
-            padding: "15px",
-            fontSize: "20px",
-            color: "#e7e4de",
+            padding: "10px",
+            fontSize: "16px",
             textAlign: "center",
         },
         button: {
-            background: "#e7e4de",
-            color: "#6d625d",
+            background: "var(--color-4)",
+            fontFamily: "var(--font-2)",
+            color: "var(--color-1)",
             padding: "10px 20px",
-            border: "none",
-            borderRadius: "5px",
+            border: "1px solid var(--color-1)",
             cursor: "pointer",
-            fontSize: "16px",
+            marginTop: "15px",
+            marginRight: "10px",
         },
     };
 
     const handlePortfolioClick = (name) => {
-        let sanitizedName = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        const sanitizedName = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
         window.location.href = `/portofolio/${sanitizedName}`;
     };
 
@@ -90,7 +104,8 @@ const MyportofolioHome = () => {
             {message && <p style={styles.message}>{message}</p>}
             {loading && <p style={styles.loading}>Loading...</p>}
 
-            <h2 style={styles.title}>View our portfolio</h2>
+            <h2 style={styles.title}>View Our Portfolio</h2>
+            <p style={styles.subtitle}>Take a glimpse at our past & current works.</p>
 
             <div style={styles.container}>
                 {myportofolios.slice(-3).map((myportofolio) => (
@@ -113,7 +128,7 @@ const MyportofolioHome = () => {
             </div>
 
             <a href="/portofolio">
-                <button style={styles.button}>View Portfolio</button>
+                <button style={styles.button}>View our portfolio</button>
             </a>
         </section>
     );
