@@ -49,10 +49,6 @@ const Toinstagrams = () => {
             padding: "40px 0", // Meningkatkan padding
             gap: "30px", // Meningkatkan gap
             maxWidth: "1200px", // Menambahkan maxWidth
-            "::WebkitScrollbar": {
-                display: "none",
-            },
-            "scrollbarWidth": "none",
         },
         toinstagramItem: {
             margin: "0", // Menghapus margin
@@ -61,10 +57,7 @@ const Toinstagrams = () => {
             transition: "transform 0.3s ease-in-out", // Efek hover
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Efek bayangan
             borderRadius: "8px", // Efek sudut bulat
-            overflow: "hidden", // Mengatasi masalah bayangan di sudut
-            "&:hover": {
-                transform: "scale(1.05)", // Efek hover
-            },
+            overflow: "hidden", // Mengatasi masalah bayangan di sudu
         },
         image: {
             height: "250px", // Meningkatkan tinggi gambar
