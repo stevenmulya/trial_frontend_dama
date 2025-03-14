@@ -34,8 +34,8 @@ const TaglinesAdmin = () => {
       return;
     }
 
-    if (newTagline.tagline_image.size > 7 * 1024 * 1024) { // Mengubah 5 menjadi 10
-    setMessage("Image size must be less than 7MB.");
+    if (newTagline.tagline_image.size > 5 * 1024 * 1024) { // Mengubah 5 menjadi 10
+    setMessage("Image size must be less than 5MB.");
     return;
 }
 
