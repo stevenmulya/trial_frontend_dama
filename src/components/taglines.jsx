@@ -69,6 +69,7 @@ const Taglines = () => {
         subtitle: {
             fontSize: "20px",
             marginBottom: "20px",
+            fontFamily: "var(--font-2)",
             color: "var(--color-4)",
         },
         loading: {
@@ -85,14 +86,15 @@ const Taglines = () => {
             color: "red",
         },
         exploreButton: {
-            padding: "10px 20px",
-            fontSize: "16px",
-            backgroundColor: "var(--color-2)",
-            color: "var(--color-4)",
-            border: "none",
-            cursor: "pointer",
-            fontFamily: "var(--font-1)",
-            opacity: 0.7,
+          background: "var(--color-4)",
+          fontFamily: "var(--font-2)",
+          color: "var(--color-1)",
+          padding: "10px 20px",
+          border: "1px solid var(--color-1)",
+          cursor: "pointer",
+          marginTop: "15px",
+          marginRight: "10px",
+          opacity: 0.7,
         },
     };
 

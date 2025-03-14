@@ -82,11 +82,7 @@ const Toservices = () => {
             marginBottom: "20px", // Margin bawah
         },
         title: {
-            fontSize: "24px",
             marginBottom: "10px",
-            color: "var(--color-1)",
-            fontFamily: "var(--font-2)",
-            fontWeight: "regular",
         },
         button: {
             background: "var(--color-4)",
