@@ -54,8 +54,6 @@ const Myservices = () => {
                     justify-content: center;
                     align-items: center;
                     padding: 80px 20px;
-                    background: #f4f4f4;
-                    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                 }
                 .service-container {
                     display: flex;
@@ -80,6 +78,7 @@ const Myservices = () => {
                     margin-top: 10px;
                     font-weight: bold;
                     font-size: 1.2rem;
+                    color: "var(--color-4)";
                 }
             `}</style>
             {loading ? (

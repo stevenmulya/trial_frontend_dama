@@ -28,6 +28,10 @@ const Taglines = () => {
     setCurrentTaglineIndex((prevIndex) => (prevIndex + 1) % taglines.length);
   };
 
+  const handleExploreServicesClick = () => {
+    window.location.href = "/services";
+  };
+
   const styles = {
     section: {
       position: "relative",
@@ -55,10 +59,13 @@ const Taglines = () => {
     title: {
       fontSize: "36px",
       marginBottom: "10px",
-      fontFamily: "EB Garamond, sans-serif",
+      fontFamily: "var(--font-1)",
+      color: "var(--color-4)",
     },
     subtitle: {
       fontSize: "20px",
+      marginBottom: "20px",
+      color: "var(--color-4)",
     },
     loading: {
       position: "absolute",
@@ -72,6 +79,16 @@ const Taglines = () => {
       top: "20px",
       left: "20px",
       color: "red",
+    },
+    exploreButton: {
+      padding: "10px 20px",
+      fontSize: "16px",
+      backgroundColor: "var(--color-4)",
+      color: "var(--color-3)",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      fontFamily: "var(--font-1)",
     },
   };
 
@@ -114,6 +131,9 @@ const Taglines = () => {
       <div style={styles.textOverlay}>
         <h2 style={styles.title}>{currentTagline.tagline_title}</h2>
         <p style={styles.subtitle}>{currentTagline.tagline_subtitle}</p>
+        <button style={styles.exploreButton} onClick={handleExploreServicesClick}>
+          Explore Services
+        </button>
       </div>
     </section>
   );

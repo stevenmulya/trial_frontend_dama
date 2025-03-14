@@ -24,31 +24,38 @@ const Toservices = () => {
   };
 
   const styles = {
-    
     section: {
-      padding: "50px 20px",
+      height: "100vh",
+      padding: "5px 30px",
       textAlign: "center",
+      background: "var(--color-4)",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
     },
     message: {
       color: "red",
-      marginBottom: "20px",
+      marginBottom: "2px",
     },
     loading: {
-      marginBottom: "20px",
+      marginBottom: "2px",
     },
     container: {
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "center",
-      gap: "20px",
+      gap: "2px",
+      width: "100%",
+      maxWidth: "1200px",
     },
     toserviceItem: {
       display: "flex",
       alignItems: "center",
       padding: "20px",
-      width: "80%",
-      maxWidth: "1000px",
-      margin: "20px auto",
+      width: "100%",
+      maxWidth: "1200px",
+      margin: "2px auto",
     },
     textContainer: {
       flex: 1,
@@ -58,23 +65,27 @@ const Toservices = () => {
     imageContainer: {
       flex: 1,
       textAlign: "right",
+      marginBottom: "0",
     },
     image: {
-      maxWidth: "100%",
-      maxHeight: "300px",
+      width: "100%",
+      height: "auto",
       objectFit: "cover",
       borderRadius: "8px",
     },
     title: {
       fontSize: "24px",
       marginBottom: "10px",
-      color: "#6d625d",
+      color: "var(--color-1)",
+      fontFamily: "var(--font-2)",
+      fontWeight: "regular",
     },
     button: {
-      background: "#6d625d",
-      color: "white",
+      background: "var(--color-4)",
+      fontFamily: "var(--font-2)",
+      color: "var(--color-1)",
       padding: "10px 20px",
-      border: "none",
+      border: "1px solid var(--color-1)",
       borderRadius: "5px",
       cursor: "pointer",
       marginTop: "15px",

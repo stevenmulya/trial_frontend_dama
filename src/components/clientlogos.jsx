@@ -45,8 +45,9 @@ const Clientlogos = () => {
 
   const styles = {
     section: {
-      padding: "50px 20px",
+      padding: "2px 20px",
       textAlign: "center",
+      color: "var(--color-4)",
     },
     message: {
       color: "red",

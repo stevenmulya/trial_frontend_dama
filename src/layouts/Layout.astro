@@ -6,58 +6,14 @@
     <title>Your Website</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style is:global>
+        @import '../styles/global.css'; /* Import global.css */
+    </style>
     <style>
-        /* Reset CSS */
-        @font-face {
-            font-family: 'Avenir Next LT Pro';
-            src: url('/fonts/AvenirNextLTPro-Regular.woff2') format('woff2'),
-                 url('/fonts/AvenirNextLTPro-Regular.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Avenir Next LT Pro';
-            src: url('/fonts/AvenirNextLTPro-Bold.woff2') format('woff2'),
-                 url('/fonts/AvenirNextLTPro-Bold.woff') format('woff');
-            font-weight: bold;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Avenir Next LT Pro';
-            src: url('/fonts/AvenirNextLTPro-It.woff2') format('woff2'),
-                 url('/fonts/AvenirNextLTPro-It.woff') format('woff');
-            font-weight: normal;
-            font-style: italic;
-            font-display: swap;
-        }
-
-        :root {
-            --font-1: 'EB Garamond', sans-serif;
-            --font-2: 'Avenir Next LT Pro', sans-serif;
-            --color-1: #000;
-            --color-2: #2b2b2b;
-            --color-3: #6d625d;
-            --color-4: #e7e4de;
-            --color-5: #f6f5f3;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-2);
-            font-weight: normal;
-            font-style: normal;
-            line-height: 1.6;
-            color: var(--color-5);
-            background-color: var(--color-4);
         }
 
         a {
@@ -71,9 +27,9 @@
 
         /* Header Styles */
         header {
-            background-color: var(--color-3);
+            background-color: var(--color-2);
             font-family: var(--font-1);
-            color: var(--color-5);
+            color: var(--color-4);
             padding: 1rem 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -101,7 +57,7 @@
         }
 
         nav ul li a:hover {
-            color: var(--color-4);
+            color: var(--color-3);
         }
 
         .logo img {
@@ -122,15 +78,17 @@
             width: 100%;
             max-width: 100vw;
             box-sizing: border-box;
+            color: var(--color-1);
         }
 
         /* Footer Styles */
         footer {
-            background-color: var(--color-3);
+            background-color: var(--color-2);
+            font-family: var(--font-1);
+            color: var(--color-4);
             padding: 2rem 0;
             text-align: center;
             border-top: 1px solid #ddd;
-            font-family: var(--font-1);
         }
 
         footer nav ul {
@@ -153,12 +111,12 @@
 
         /* CV DAMA Styles */
         .cv-dama {
-            background-color: var(--color-1);
+            background-color: var(--color-2);
+            font-family: var(--font-1);
+            color: var(--color-4);
             text-align: center;
             padding: 1rem 0;
-            font-size: 1rem;
-            color: var(--color-5);
-            font-family: var(--font-1);
+            font-size: 0.5rem;
         }
 
         /* Responsive Styles */
@@ -224,6 +182,6 @@
             </ul>
         </nav>
     </footer>
-    <div class="cv-dama">CV DAMA</div>
+    <div class="cv-dama">CV DAMA ADICIPTA KREASI MODE</div>
 </body>
 </html>

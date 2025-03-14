@@ -32,7 +32,7 @@ const Testimonials = () => {
     section: {
       position: "relative",
       width: "100%",
-      height: "500px",
+      height: "100vh",
       overflow: "hidden",
       cursor: "pointer",
     },
