@@ -42,17 +42,17 @@ const MyportofolioHome = () => {
         },
         title: {
             fontSize: "28px",
-            marginBottom: "10px",
+            marginBottom: "10px", // Mengurangi margin bawah
         },
         subtitle: {
-            marginTop: "5px",
+            marginTop: "5px", // Mengurangi margin atas
         },
         container: {
             display: "flex",
             justifyContent: "center",
             flexWrap: "wrap",
             gap: "40px",
-            marginBottom: "10px",
+            marginBottom: "30px",
             maxWidth: "1200px",
             width: "100%",
         },
@@ -61,7 +61,7 @@ const MyportofolioHome = () => {
             border: "1px solid #ddd",
             borderRadius: "8px",
             overflow: "hidden",
-            
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             cursor: "pointer",
             transition: "transform 0.3s ease",
             display: "flex",
@@ -73,24 +73,25 @@ const MyportofolioHome = () => {
         },
         image: {
             width: "100%",
-            height: "250px", // Mengurangi tinggi gambar
+            height: "300px",
             objectFit: "cover",
             transition: "transform 0.3s ease-in-out",
         },
         portofolioTitle: {
             padding: "10px",
             fontSize: "16px",
+            color: "#e7e4de",
             textAlign: "center",
         },
         button: {
-            background: "var(--color-4)",
-            fontFamily: "var(--font-2)",
-            color: "var(--color-1)",
+            background: "#e7e4de",
+            color: "#6d625d",
             padding: "10px 20px",
-            border: "1px solid var(--color-1)",
+            border: "none",
             cursor: "pointer",
-            marginTop: "15px",
-            marginRight: "10px",
+            fontSize: "16px",
+            marginTop: "20px",
+            padding: "15px 30px", // Menambahkan padding
         },
     };
 
@@ -128,7 +129,7 @@ const MyportofolioHome = () => {
             </div>
 
             <a href="/portofolio">
-                <button style={styles.button}>View our portfolio</button>
+                <button style={styles.button}>View Portfolio</button>
             </a>
         </section>
     );
