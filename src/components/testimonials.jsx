@@ -28,7 +28,7 @@ const Testimonials = () => {
         setCurrentTestimonialIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
     };
 
-    const imageOpacity = 0.7; // Variabel untuk opacity gambar
+    const imageOpacity = 0.7;
 
     const styles = {
         section: {
@@ -48,7 +48,7 @@ const Testimonials = () => {
             height: "100%",
             objectFit: "cover",
             transition: "opacity 0.5s ease-in-out",
-            opacity: imageOpacity, // Menggunakan variabel opacity
+            opacity: imageOpacity,
         },
         textOverlay: {
             position: "absolute",
@@ -75,6 +75,24 @@ const Testimonials = () => {
             top: "20px",
             left: "20px",
             color: "red",
+        },
+        indexContainer: {
+            position: "absolute",
+            bottom: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+        },
+        indexCircle: {
+            width: "10px",
+            height: "10px",
+            borderRadius: "50%",
+            margin: "0 5px",
+            backgroundColor: "rgba(255, 255, 255, 0.5)",
+            cursor: "pointer",
+        },
+        activeCircle: {
+            backgroundColor: "white",
         },
     };
 
@@ -111,12 +129,24 @@ const Testimonials = () => {
                 alt={currentTestimonial.testimonial_name}
                 style={{
                     ...styles.backgroundImage,
-                    opacity: loading ? 0 : imageOpacity, // Menggunakan variabel opacity
+                    opacity: loading ? 0 : imageOpacity,
                 }}
             />
             <div style={styles.textOverlay}>
                 <h2 style={styles.name}>{currentTestimonial.testimonial_name}</h2>
                 <p style={styles.text}>{currentTestimonial.testimonial_text}</p>
+            </div>
+            <div style={styles.indexContainer}>
+                {testimonials.map((_, index) => (
+                    <div
+                        key={index}
+                        style={{
+                            ...styles.indexCircle,
+                            ...(index === currentTestimonialIndex ? styles.activeCircle : {}),
+                        }}
+                        onClick={() => setCurrentTestimonialIndex(index)}
+                    ></div>
+                ))}
             </div>
         </section>
     );
