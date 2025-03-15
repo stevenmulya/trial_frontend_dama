@@ -1,119 +1,14 @@
 ---
-import TaglinesAdmin from '../components/taglinesadmin.jsx';
-import ToservicesAdmin from '../components/toservicesadmin.jsx';
-import ClientlogosAdmin from '../components/clientlogosadmin';
-import TestimonialsAdmin from '../components/testimonialsadmin';
-import ToinstagramsAdmin from '../components/toinstagramsadmin';
+import MyHomeAdmin from '../components/myhomeadmin.jsx';
 ---
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Home Admin</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-
-        main {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-            gap: 20px;
-        }
-
-        section {
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Different background colors for each section */
-        section:nth-child(1) { background-color: #e0f7fa; } /* Light cyan */
-        section:nth-child(2) { background-color: #e8f5e9; } /* Light green */
-        section:nth-child(3) { background-color: #fce4ec; } /* Light pink */
-        section:nth-child(4) { background-color: #fff3e0; } /* Light orange */
-        section:nth-child(5) { background-color: #ede7f6; } /* Light purple */
-
-        h2 {
-            margin-top: 0;
-            color: #333;
-        }
-
-        input[type="text"], textarea, input[type="file"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            background-color: #f9f9f9;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 5px;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .item {
-            border: 1px solid #eee;
-            padding: 10px;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            border-radius: 4px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-
-        .item:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .item img {
-            max-width: 50px;
-            margin-right: 10px;
-            border-radius: 4px;
-        }
-
-        .message {
-            color: green;
-            margin-bottom: 10px;
-        }
-
-        .loading {
-            color: blue;
-            margin-bottom: 10px;
-        }
-
-        .image-preview {
-            max-width: 100px;
-            max-height: 100px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-    </style>
-</head>
-<body>
-    <main>
-        <section><TaglinesAdmin client:load /></section>
-        <section><ToservicesAdmin client:load /></section>
-        <section><ClientlogosAdmin client:load /></section>
-        <section><TestimonialsAdmin client:load /></section>
-        <section><ToinstagramsAdmin client:load /></section>
-    </main>
-</body>
+  </head>
+  <body>
+    <MyHomeAdmin client:load />
+  </body>
 </html>

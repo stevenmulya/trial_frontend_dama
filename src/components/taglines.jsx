@@ -51,7 +51,7 @@ const Taglines = () => {
             height: "100%",
             objectFit: "cover",
             transition: "0.5s ease-in-out",
-            opacity: 0.7, // Set your desired opacity here
+            opacity: 0.7,
         },
         textOverlay: {
             position: "absolute",
@@ -86,15 +86,32 @@ const Taglines = () => {
             color: "red",
         },
         exploreButton: {
-          background: "var(--color-4)",
-          fontFamily: "var(--font-2)",
-          color: "var(--color-1)",
-          padding: "10px 20px",
-          border: "1px solid var(--color-1)",
-          cursor: "pointer",
-          marginTop: "15px",
-          marginRight: "10px",
-          opacity: 0.7,
+            background: "var(--color-2)",
+            fontFamily: "var(--font-2)",
+            color: "var(--color-4)",
+            padding: "10px 20px",
+            border: "1px solid var(--color-1)",
+            cursor: "pointer",
+            marginTop: "15px",
+            marginRight: "10px",
+        },
+        indexContainer: {
+            position: "absolute",
+            bottom: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+        },
+        indexCircle: {
+            width: "10px",
+            height: "10px",
+            borderRadius: "50%",
+            margin: "0 5px",
+            backgroundColor: "rgba(255, 255, 255, 0.5)",
+            cursor: "pointer",
+        },
+        activeCircle: {
+            backgroundColor: "white",
         },
     };
 
@@ -137,6 +154,18 @@ const Taglines = () => {
                 <button style={styles.exploreButton} onClick={handleExploreServicesClick}>
                     Discover our services
                 </button>
+            </div>
+            <div style={styles.indexContainer}>
+                {taglines.map((_, index) => (
+                    <div
+                        key={index}
+                        style={{
+                            ...styles.indexCircle,
+                            ...(index === currentTaglineIndex ? styles.activeCircle : {}),
+                        }}
+                        onClick={() => setCurrentTaglineIndex(index)}
+                    ></div>
+                ))}
             </div>
         </section>
     );
