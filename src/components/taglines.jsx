@@ -6,14 +6,15 @@ const Taglines = () => {
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const intervalRef = useRef(null);
+    const imageRef = useRef(null);
 
     useEffect(() => {
         fetchTaglines();
-        intervalRef.current = setInterval(() => {
-            setCurrentTaglineIndex((prevIndex) => (prevIndex + 1) % taglines.length);
-        }, 5000);
+        startAutoSlide();
 
-        return () => clearInterval(intervalRef.current);
+        return () => {
+            clearInterval(intervalRef.current);
+        };
     }, [taglines.length]);
 
     const fetchTaglines = async () => {
@@ -30,8 +31,40 @@ const Taglines = () => {
         }
     };
 
+    const startAutoSlide = () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+
+        intervalRef.current = setInterval(() => {
+            setCurrentTaglineIndex((prevIndex) => (prevIndex + 1) % taglines.length);
+        }, 5000);
+    };
+
+    useEffect(() => {
+        if (taglines.length > 0) {
+            const currentTagline = taglines[currentTaglineIndex];
+            const imageUrl = `${currentTagline.tagline_image}?t=${Date.now()}`;
+
+            if (imageRef.current) {
+                imageRef.current.classList.add("slide-transition");
+                imageRef.current.src = imageUrl;
+
+                imageRef.current.addEventListener("transitionend", () => {
+                    imageRef.current.classList.remove("slide-transition");
+                }, { once: true });
+            }
+        }
+    }, [currentTaglineIndex, taglines]);
+
     const handleExploreServicesClick = () => {
         window.location.href = "/services";
+    };
+
+    const handleIndexClick = (index) => {
+        clearInterval(intervalRef.current); // Hentikan auto slide
+        setCurrentTaglineIndex(index);
+        startAutoSlide(); // Mulai auto slide lagi
     };
 
     const styles = {
@@ -50,7 +83,6 @@ const Taglines = () => {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            transition: "0.5s ease-in-out",
             opacity: 0.7,
         },
         textOverlay: {
@@ -115,42 +147,25 @@ const Taglines = () => {
         },
     };
 
-    if (loading) {
-        return (
-            <section style={styles.section}>
-                <p style={styles.loading}>Loading...</p>
-            </section>
-        );
-    }
-
-    if (message) {
-        return (
-            <section style={styles.section}>
-                <p style={styles.message}>{message}</p>
-            </section>
-        );
-    }
-
-    if (taglines.length === 0) {
-        return (
-            <section style={styles.section}>
-                <p style={styles.loading}>No taglines available.</p>
-            </section>
-        );
-    }
-
-    const currentTagline = taglines[currentTaglineIndex];
+    const transitionStyle = `
+        .slide-transition {
+            transition: transform 0.5s ease-in-out;
+            transform: translateX(-100%);
+        }
+    `;
 
     return (
         <section style={styles.section}>
+            <style>{transitionStyle}</style>
             <img
-                src={currentTagline.tagline_image}
-                alt={currentTagline.tagline_title}
+                ref={imageRef}
+                src={taglines.length > 0 ? `${taglines[currentTaglineIndex].tagline_image}?t=${Date.now()}` : ""}
+                alt={taglines.length > 0 ? taglines[currentTaglineIndex].tagline_title : ""}
                 style={styles.backgroundImage}
             />
             <div style={styles.textOverlay}>
-                <h2 style={styles.title}>{currentTagline.tagline_title}</h2>
-                <p style={styles.subtitle}>{currentTagline.tagline_subtitle}</p>
+                <h2 style={styles.title}>{taglines.length > 0 ? taglines[currentTaglineIndex].tagline_title : ""}</h2>
+                <p style={styles.subtitle}>{taglines.length > 0 ? taglines[currentTaglineIndex].tagline_subtitle : ""}</p>
                 <button style={styles.exploreButton} onClick={handleExploreServicesClick}>
                     Discover our services
                 </button>
@@ -163,7 +178,7 @@ const Taglines = () => {
                             ...styles.indexCircle,
                             ...(index === currentTaglineIndex ? styles.activeCircle : {}),
                         }}
-                        onClick={() => setCurrentTaglineIndex(index)}
+                        onClick={() => handleIndexClick(index)}
                     ></div>
                 ))}
             </div>
