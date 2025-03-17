@@ -187,15 +187,19 @@ const TaglinesAdmin = () => {
 
             {showForm && editIndex === null && (
                 <form className={styles.taglineForm}>
+                    <label htmlFor="taglineTitle">Tagline Title:</label>
                     <input
                         type="text"
+                        id="taglineTitle"
                         placeholder="Tagline Title"
                         value={newTagline.tagline_title}
                         onChange={(e) => setNewTagline({ ...newTagline, tagline_title: e.target.value })}
                         className={styles.inputField}
                     />
+                    <label htmlFor="taglineSubtitle">Tagline Subtitle:</label>
                     <input
                         type="text"
+                        id="taglineSubtitle"
                         placeholder="Tagline Subtitle"
                         value={newTagline.tagline_subtitle}
                         onChange={(e) => setNewTagline({ ...newTagline, tagline_subtitle: e.target.value })}
@@ -228,7 +232,7 @@ const TaglinesAdmin = () => {
                 </form>
             )}
 
-            <div className={styles.taglineList}>
+<div className={styles.taglineList}>
                 {taglines.map((tagline, index) => (
                     <div key={tagline.id} className={styles.taglineItem}>
                         <div className={styles.taglineContent}>
@@ -244,15 +248,19 @@ const TaglinesAdmin = () => {
                         </div>
                         {showForm && editIndex === index && (
                             <form className={`${styles.taglineForm} ${styles.editForm}`}>
+                                <label htmlFor="editTaglineTitle">Tagline Title:</label>
                                 <input
                                     type="text"
+                                    id="editTaglineTitle"
                                     placeholder="Tagline Title"
                                     value={newTagline.tagline_title}
                                     onChange={(e) => setNewTagline({ ...newTagline, tagline_title: e.target.value })}
                                     className={styles.inputField}
                                 />
+                                <label htmlFor="editTaglineSubtitle">Tagline Subtitle:</label>
                                 <input
                                     type="text"
+                                    id="editTaglineSubtitle"
                                     placeholder="Tagline Subtitle"
                                     value={newTagline.tagline_subtitle}
                                     onChange={(e) => setNewTagline({ ...newTagline, tagline_subtitle: e.target.value })}
@@ -264,10 +272,10 @@ const TaglinesAdmin = () => {
                                             type="file"
                                             accept="image/*"
                                             onChange={handleImageChange}
-                                            id="imageUpload"
+                                            id="editImageUpload"
                                             style={{ display: "none" }}
                                         />
-                                        <label htmlFor="imageUpload">Upload Image</label>
+                                        <label htmlFor="editImageUpload">Upload Image</label>
                                     </div>
                                     {imagePreview && <img src={imagePreview} alt="Preview" className={styles.imagePreview} />}
                                 </div>

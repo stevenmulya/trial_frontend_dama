@@ -96,8 +96,10 @@ const ToservicesAdmin = () => {
                         </div>
                         {selectedToservice && selectedToservice.id === toservice.id && (
                             <div className={styles.toserviceForm}>
+                                <label htmlFor="toserviceSubtitle">Toservice Subtitle:</label>
                                 <input
                                     type="text"
+                                    id="toserviceSubtitle"
                                     placeholder="Toservice Subtitle"
                                     value={editedToservice.toservice_subtitle}
                                     onChange={(e) => setEditedToservice({ ...editedToservice, toservice_subtitle: e.target.value })}
