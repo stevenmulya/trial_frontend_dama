@@ -1,31 +1,44 @@
+:root {
+    --font-1: 'EB Garamond', sans-serif;
+    --font-2: 'Avenir Next LT Pro', sans-serif;
+    --color-1: #000;
+    --color-2: #2b2b2b;
+    --color-3: #6d625d;
+    --color-4: #e7e4de;
+    --color-5: #f6f5f3;
+}
+
 .taglinesAdminContainer {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-3);
     border-radius: 8px;
-    font-family: sans-serif;
-  }
-  
-  .message {
+    font-family: var(--font-2); /* Menggunakan font-2 */
+    color: var(--color-1);
+    background-color: var(--color-5);
+}
+
+.message {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
-  }
-  
-  .message.success {
+    font-family: var(--font-2); /* Menggunakan font-2 */
+}
+
+.message.success {
     background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
-  }
-  
-  .message.error {
+}
+
+.message.error {
     background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
-  }
-  
-  .taglineForm, .editForm {
+}
+
+.taglineForm, .editForm {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -33,130 +46,137 @@
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-  }
-  
-  .inputField,
-  .actionButton,
-  .cancelButton,
-  .uploadButton,
-  .deleteButton {
+    background-color: var(--color-4); /* Menggunakan color-4 */
+}
+
+.inputField,
+.actionButton,
+.cancelButton,
+.uploadButton,
+.deleteButton {
     padding: 12px;
     font-size: 16px;
-  }
-  
-  .imageUploadContainer {
+    font-family: var(--font-2); /* Menggunakan font-2 */
+    border: 1px solid var(--color-3); /* Menggunakan color-3 */
+    border-radius: 4px;
+}
+
+.imageUploadContainer {
     display: flex;
     align-items: center;
-    flex-direction: column; /* Mengubah arah flex menjadi kolom */
-  }
-  
-  .imageUploadBox {
-    border: 2px dashed #ccc;
+    flex-direction: column;
+}
+
+.imageUploadBox {
+    border: 2px dashed var(--color-3); /* Menggunakan color-3 */
     padding: 10px;
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
-    margin-bottom: 10px; /* Menambahkan margin bawah */
-  }
-  
-  .imagePreview {
+    margin-bottom: 10px;
+}
+
+.imagePreview {
     max-width: 80px;
     border-radius: 4px;
-  }
-  
-  .taglineList {
+}
+
+.taglineList {
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
-  
-  .taglineItem {
-    border: 1px solid #eee;
+}
+
+.taglineItem {
+    border: 1px solid var(--color-3); /* Menggunakan color-3 */
     padding: 10px;
     border-radius: 4px;
-  }
-  
-  .taglineContent {
+    background-color: var(--color-4); /* Menggunakan color-4 */
+}
+
+.taglineContent {
     display: flex;
     align-items: center;
-    flex-direction: column; /* Mengubah arah flex menjadi kolom */
-  }
-  
-  .taglineImage {
-    max-width: 100%; /* Mengubah lebar gambar menjadi 100% */
+    flex-direction: column;
+    font-family: var(--font-2); /* Menggunakan font-2 */
+    color: var(--color-2); /* Menggunakan color-2 */
+}
+
+.taglineImage {
+    max-width: 30%;
     border-radius: 4px;
-    margin-bottom: 10px; /* Menambahkan margin bawah */
-  }
-  
-  .taglineActions {
+    margin-bottom: 10px;
+}
+
+.taglineActions {
     display: flex;
     gap: 5px;
-    margin-top: 10px; /* Menambahkan margin atas */
-  }
-  
-  .uploadButton {
+    margin-top: 10px;
+}
+
+.uploadButton {
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 10px;
-  }
-  
-  .actionButton {
+}
+
+.actionButton {
     background-color: #28a745;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .deleteButton {
+}
+
+.deleteButton {
     background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .cancelButton {
+}
+
+.cancelButton {
     background-color: #6c757d;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  /* Media Query untuk Mobile */
-  @media (max-width: 600px) {
+}
+
+/* Media Query untuk Mobile */
+@media (max-width: 600px) {
     .taglinesAdminContainer {
-      padding: 10px;
+        padding: 10px;
     }
-  
+
     .taglineForm, .editForm {
-      padding: 10px;
+        padding: 10px;
     }
-  
+
     .inputField,
     .actionButton,
     .cancelButton,
     .uploadButton,
     .deleteButton {
-      padding: 10px;
-      font-size: 14px;
+        padding: 10px;
+        font-size: 14px;
     }
-  
+
     .imagePreview {
-      max-width: 60px;
+        max-width: 60px;
     }
-  
+
     .taglineActions {
-      flex-direction: column;
-      align-items: stretch;
+        flex-direction: column;
+        align-items: stretch;
     }
-  
+
     .taglineActions button {
-      width: 100%;
-      margin-bottom: 5px;
+        width: 100%;
+        margin-bottom: 5px;
     }
-  }
+}

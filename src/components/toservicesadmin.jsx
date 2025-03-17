@@ -11,19 +11,27 @@ const ToservicesAdmin = () => {
     const [message, setMessage] = useState("");
     const [selectedToservice, setSelectedToservice] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [showEditForm, setShowEditForm] = useState(false); // Tambahkan state untuk mengontrol form edit
 
     useEffect(() => {
         fetchToservices();
     }, []);
 
     const fetchToservices = async () => {
+        setLoading(true);
         try {
             const response = await fetch("https://trial-backend-dama.vercel.app/toservices");
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const data = await response.json();
             setToservices(data);
+            setMessage("");
         } catch (error) {
             console.error("Error fetching toservices:", error);
             setMessage("Failed to load toservices.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -49,15 +57,17 @@ const ToservicesAdmin = () => {
                 fetchToservices();
                 setSelectedToservice(null);
                 setImagePreview(null);
+                setShowEditForm(false); // Tutup form edit setelah berhasil update
             } else {
                 const errorData = await response.json();
-                setMessage(`Failed to update toservice: ${errorData.error}`);
+                throw new Error(`Failed to update toservice: ${errorData.error}`);
             }
         } catch (error) {
             console.error("Error updating toservice:", error);
             setMessage(`Failed to update toservice: ${error.message}`);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     const handleImageChange = (e) => {
@@ -79,12 +89,17 @@ const ToservicesAdmin = () => {
             toservice_image: null,
         });
         setImagePreview(toservice.toservice_image);
+        setShowEditForm(true); // Tampilkan form edit
     };
 
     return (
-        <section className={styles.toservicesAdmin}>
+        <section className={styles.toservicesAdminContainer}>
             <h2>Toservices Admin</h2>
-            {message && <p className={`${styles.message} ${message.startsWith("Failed") ? styles.error : styles.success}`}>{message}</p>}
+            {message && (
+                <p className={`${styles.message} ${message.startsWith("Failed") ? styles.error : styles.success}`}>
+                    {message}
+                </p>
+            )}
 
             <div className={styles.toserviceList}>
                 {toservices.map((toservice) => (
@@ -92,9 +107,9 @@ const ToservicesAdmin = () => {
                         <img src={toservice.toservice_image} alt={toservice.toservice_subtitle} className={styles.toserviceImage} />
                         <h2>{toservice.toservice_subtitle}</h2>
                         <div className={styles.toserviceActions}>
-                            <button onClick={() => handleEdit(toservice)} className={styles.editButton}>Edit</button>
+                            <button onClick={() => handleEdit(toservice)} className={styles.actionButton}>Edit</button>
                         </div>
-                        {selectedToservice && selectedToservice.id === toservice.id && (
+                        {showEditForm && selectedToservice && selectedToservice.id === toservice.id && (
                             <div className={styles.toserviceForm}>
                                 <label htmlFor="toserviceSubtitle">Toservice Subtitle:</label>
                                 <input
@@ -112,6 +127,9 @@ const ToservicesAdmin = () => {
                                 </div>
                                 <button onClick={updateToservice} disabled={loading} className={styles.actionButton}>
                                     {loading ? "Updating..." : "Update Toservice"}
+                                </button>
+                                <button onClick={() => setShowEditForm(false)} className={styles.cancelButton}>
+                                    Cancel
                                 </button>
                             </div>
                         )}

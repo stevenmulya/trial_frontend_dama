@@ -1,16 +1,29 @@
-.toservicesAdmin {
+:root {
+    --font-1: 'EB Garamond', sans-serif;
+    --font-2: 'Avenir Next LT Pro', sans-serif;
+    --color-1: #000;
+    --color-2: #2b2b2b;
+    --color-3: #6d625d;
+    --color-4: #e7e4de;
+    --color-5: #f6f5f3;
+}
+
+.toservicesAdminContainer {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-3);
     border-radius: 8px;
-    font-family: sans-serif;
+    font-family: var(--font-2);
+    color: var(--color-1);
+    background-color: var(--color-5);
 }
 
 .message {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
+    font-family: var(--font-2);
 }
 
 .message.success {
@@ -25,46 +38,6 @@
     border: 1px solid #f5c6cb;
 }
 
-.toserviceForm {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.inputField {
-    padding: 12px;
-    font-size: 16px;
-}
-
-.imageUploadContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 10px 0;
-}
-
-.imageUploadLabel {
-    padding: 10px 15px;
-    border: 2px dashed #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.imagePreview {
-    max-width: 100px;
-    border-radius: 4px;
-}
-
-.actionButton {
-    padding: 12px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 .toserviceList {
     display: flex;
     flex-direction: column;
@@ -72,17 +45,14 @@
 }
 
 .toserviceItem {
-    border: 1px solid #eee;
+    border: 1px solid var(--color-3);
     padding: 10px;
     border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    background-color: var(--color-4);
 }
 
 .toserviceImage {
-    max-width: 150px;
+    max-width: 30%;
     border-radius: 4px;
     margin-bottom: 10px;
 }
@@ -93,46 +63,77 @@
     margin-top: 10px;
 }
 
-.editButton {
-    padding: 8px 12px;
-    border: none;
+.actionButton, .cancelButton {
+    padding: 12px;
+    font-size: 16px;
+    font-family: var(--font-2);
+    border: 1px solid var(--color-3);
     border-radius: 4px;
     cursor: pointer;
-    background-color: #007bff;
+}
+
+.actionButton {
+    background-color: #28a745;
     color: white;
+    border: none;
+}
+
+.cancelButton {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+}
+
+.toserviceForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.inputField {
+    padding: 12px;
+    font-size: 16px;
+    font-family: var(--font-2);
+    border: 1px solid var(--color-3);
+    border-radius: 4px;
+}
+
+.imageUploadContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.imageUploadLabel {
+    border: 2px dashed var(--color-3);
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.imagePreview {
+    max-width: 80px;
+    border-radius: 4px;
 }
 
 /* Media Query untuk Mobile */
 @media (max-width: 600px) {
-    .toservicesAdmin {
+    .toservicesAdminContainer {
         padding: 10px;
     }
 
-    .toserviceForm {
-        padding: 10px;
-    }
-
-    .inputField, .actionButton {
+    .inputField,
+    .actionButton,
+    .cancelButton {
         padding: 10px;
         font-size: 14px;
     }
 
-    .imageUploadContainer {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .imagePreview {
-        max-width:80px;
-    }
-
-    .toserviceActions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .editButton {
-        width: 100%;
-        margin-bottom: 5px;
+    .toserviceImage {
+        max-width: 50%;
     }
 }
