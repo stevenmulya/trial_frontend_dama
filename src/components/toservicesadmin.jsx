@@ -1,186 +1,123 @@
 import React, { useState, useEffect } from "react";
+import styles from "./toservicesadmin.module.css";
 
 const ToservicesAdmin = () => {
-  const [toservices, setToservices] = useState([]);
-  const [newToservice, setNewToservice] = useState({
-    toservice_subtitle: "",
-    toservice_image: null,
-  });
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-  const [selectedToservice, setSelectedToservice] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
-
-  useEffect(() => {
-    fetchToservices();
-  }, []);
-
-  const fetchToservices = async () => {
-    try {
-      const response = await fetch("https://trial-backend-dama.vercel.app/toservices");
-      const data = await response.json();
-      setToservices(data);
-    } catch (error) {
-      console.error("Error fetching toservices:", error);
-      setMessage("Failed to load toservices.");
-    }
-  };
-
-  const addToservice = async () => {
-    if (!newToservice.toservice_subtitle || !newToservice.toservice_image) {
-      setMessage("Subtitle and image are required.");
-      return;
-    }
-
-    if (newToservice.toservice_image.size > 5 * 1024 * 1024) {
-      setMessage("Image size must be less than 5MB.");
-      return;
-    }
-
-    if (!newToservice.toservice_image.type.startsWith("image/")) {
-      setMessage("File type must be an image.");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append("toservice_subtitle", newToservice.toservice_subtitle);
-      formData.append("toservice_image", newToservice.toservice_image);
-
-      const response = await fetch("https://trial-backend-dama.vercel.app/toservices", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        setMessage("Toservice added successfully!");
-        fetchToservices();
-        setNewToservice({
-          toservice_subtitle: "",
-          toservice_image: null,
-        });
-        setImagePreview(null);
-      } else {
-        const errorData = await response.json();
-        setMessage(`Failed to add toservice: ${errorData.error}`);
-      }
-    } catch (error) {
-      console.error("Error adding toservice:", error);
-      setMessage(`Failed to add toservice: ${error.message}`);
-    }
-    setLoading(false);
-  };
-
-  const updateToservice = async () => {
-    if (!newToservice.toservice_subtitle) {
-      setMessage("Subtitle is required.");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append("toservice_subtitle", newToservice.toservice_subtitle);
-      formData.append("toservice_image", newToservice.toservice_image);
-
-      const response = await fetch(`https://trial-backend-dama.vercel.app/toservices/${selectedToservice.id}`, {
-        method: "PUT",
-        body: formData,
-      });
-
-      if (response.ok) {
-        setMessage("Toservice updated successfully!");
-        fetchToservices();
-        setNewToservice({
-          toservice_subtitle: "",
-          toservice_image: null,
-        });
-        setSelectedToservice(null);
-        setImagePreview(null);
-      } else {
-        const errorData = await response.json();
-        setMessage(`Failed to update toservice: ${errorData.error}`);
-      }
-    } catch (error) {
-      console.error("Error updating toservice:", error);
-      setMessage(`Failed to update toservice: ${error.message}`);
-    }
-    setLoading(false);
-  };
-
-  const deleteToservice = async (id) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`https://trial-backend-dama.vercel.app/toservices/${id}`, { method: "DELETE" });
-      if (response.ok) {
-        setMessage("Toservice deleted successfully!");
-        fetchToservices();
-      } else {
-        const errorData = await response.json();
-        setMessage(`Failed to delete toservice: ${errorData.error}`);
-      }
-    } catch (error) {
-      console.error("Error deleting toservice:", error);
-      setMessage("Failed to delete toservice.");
-    }
-    setLoading(false);
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setNewToservice({ ...newToservice, toservice_image: file });
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(file);
-    } else {
-      setImagePreview(null);
-    }
-  };
-
-  const handleEdit = (toservice) => {
-    setSelectedToservice(toservice);
-    setNewToservice({
-      toservice_subtitle: toservice.toservice_subtitle,
-      toservice_image: null,
+    const [toservices, setToservices] = useState([]);
+    const [editedToservice, setEditedToservice] = useState({
+        toservice_subtitle: "",
+        toservice_image: null,
     });
-    setImagePreview(toservice.toservice_image);
-  };
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
+    const [selectedToservice, setSelectedToservice] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
 
-  return (
-    <section className="toservices-admin">
-      <h2>Toservices</h2>
-      {message && <p className="message">{message}</p>}
+    useEffect(() => {
+        fetchToservices();
+    }, []);
 
-      <div className="toservice-form">
-        <input
-          type="text"
-          placeholder="Toservice Subtitle"
-          value={newToservice.toservice_subtitle}
-          onChange={(e) => setNewToservice({ ...newToservice, toservice_subtitle: e.target.value })}
-        />
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-        {imagePreview && <img src={imagePreview} alt="Preview" className="image-preview" style={{ maxWidth: "100px" }} />}
-        <button onClick={selectedToservice ? updateToservice : addToservice} disabled={loading}>
-          {loading ? (selectedToservice ? "Updating..." : "Adding...") : selectedToservice ? "Update Toservice" : "Add Toservice"}
-        </button>
-      </div>
+    const fetchToservices = async () => {
+        try {
+            const response = await fetch("https://trial-backend-dama.vercel.app/toservices");
+            const data = await response.json();
+            setToservices(data);
+        } catch (error) {
+            console.error("Error fetching toservices:", error);
+            setMessage("Failed to load toservices.");
+        }
+    };
 
-      <div className="toservice-list">
-        {toservices.map((toservice) => (
-          <div key={toservice.id} className="toservice-item">
-            <img src={toservice.toservice_image} alt={toservice.toservice_subtitle} className="toservice-image" style={{ maxWidth: "100px" }} />
-            <h2>{toservice.toservice_subtitle}</h2>
-            <button onClick={() => handleEdit(toservice)}>Edit</button>
-            <button onClick={() => deleteToservice(toservice.id)} disabled={loading}>
-              {loading ? "Deleting..." : "Delete"}
-            </button>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+    const updateToservice = async () => {
+        if (!editedToservice.toservice_subtitle) {
+            setMessage("Subtitle is required.");
+            return;
+        }
+
+        setLoading(true);
+        try {
+            const formData = new FormData();
+            formData.append("toservice_subtitle", editedToservice.toservice_subtitle);
+            formData.append("toservice_image", editedToservice.toservice_image);
+
+            const response = await fetch(`https://trial-backend-dama.vercel.app/toservices/${selectedToservice.id}`, {
+                method: "PUT",
+                body: formData,
+            });
+
+            if (response.ok) {
+                setMessage("Toservice updated successfully!");
+                fetchToservices();
+                setSelectedToservice(null);
+                setImagePreview(null);
+            } else {
+                const errorData = await response.json();
+                setMessage(`Failed to update toservice: ${errorData.error}`);
+            }
+        } catch (error) {
+            console.error("Error updating toservice:", error);
+            setMessage(`Failed to update toservice: ${error.message}`);
+        }
+        setLoading(false);
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setEditedToservice({ ...editedToservice, toservice_image: file });
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => setImagePreview(reader.result);
+            reader.readAsDataURL(file);
+        } else {
+            setImagePreview(null);
+        }
+    };
+
+    const handleEdit = (toservice) => {
+        setSelectedToservice(toservice);
+        setEditedToservice({
+            toservice_subtitle: toservice.toservice_subtitle,
+            toservice_image: null,
+        });
+        setImagePreview(toservice.toservice_image);
+    };
+
+    return (
+        <section className={styles.toservicesAdmin}>
+            <h2>Toservices Admin</h2>
+            {message && <p className={`${styles.message} ${message.startsWith("Failed") ? styles.error : styles.success}`}>{message}</p>}
+
+            <div className={styles.toserviceList}>
+                {toservices.map((toservice) => (
+                    <div key={toservice.id} className={styles.toserviceItem}>
+                        <img src={toservice.toservice_image} alt={toservice.toservice_subtitle} className={styles.toserviceImage} />
+                        <h2>{toservice.toservice_subtitle}</h2>
+                        <div className={styles.toserviceActions}>
+                            <button onClick={() => handleEdit(toservice)} className={styles.editButton}>Edit</button>
+                        </div>
+                        {selectedToservice && selectedToservice.id === toservice.id && (
+                            <div className={styles.toserviceForm}>
+                                <input
+                                    type="text"
+                                    placeholder="Toservice Subtitle"
+                                    value={editedToservice.toservice_subtitle}
+                                    onChange={(e) => setEditedToservice({ ...editedToservice, toservice_subtitle: e.target.value })}
+                                    className={styles.inputField}
+                                />
+                                <div className={styles.imageUploadContainer}>
+                                    <input type="file" accept="image/*" onChange={handleImageChange} id="imageUpload" style={{ display: "none" }} />
+                                    <label htmlFor="imageUpload" className={styles.imageUploadLabel}>Upload Image</label>
+                                    {imagePreview && <img src={imagePreview} alt="Preview" className={styles.imagePreview} />}
+                                </div>
+                                <button onClick={updateToservice} disabled={loading} className={styles.actionButton}>
+                                    {loading ? "Updating..." : "Update Toservice"}
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
 };
 
 export default ToservicesAdmin;
